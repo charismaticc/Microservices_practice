@@ -1,0 +1,24 @@
+version: '3.9'
+
+
+services:
+  phones:
+    build: ./doc_service
+    ports:
+      - 8000:80
+
+  laptops:
+    build: ./templates_service
+    ports:
+      - 8001:80
+
+  krakend_ce:
+        image: devopsfaith/krakend:watch
+        volumes:
+            - ./config/krakend:/etc/krakend
+        ports:
+            - 8080:8080
+        command: ["run", "-d", "-c", "/etc/krakend/krakend.json"]
+        depends_on:
+          - phones
+          - laptops

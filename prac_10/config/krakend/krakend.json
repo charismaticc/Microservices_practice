@@ -1,0 +1,96 @@
+{
+    "$schema": "https://www.krakend.io/schema/v3.json",
+    "version": 3,
+    "endpoints": [
+        {
+            "endpoint": "/v1/loyaltyEP",
+            "method": "GET",
+            "backend": [
+            {
+                  "url_pattern": "/v1/phones",
+                  "method": "GET",
+                  "host": [
+                    "http://phones/"
+                  ],
+                  "is_collection":true,
+                  "mapping": {
+                    "collection": "phones"
+                  }
+
+            }]
+        },
+        {
+            "endpoint": "/v1/phones/{id}",
+            "method": "GET",
+            "output_encoding": "no-op",
+            "backend": [
+            {
+                  "encoding": "no-op",
+                  "url_pattern": "/v1/phones/{id}",
+                  "method": "GET",
+                  "host": [
+                    "http://phones/"
+                  ]
+            }]
+        },
+        {
+            "endpoint": "/v1/laptops",
+            "method": "GET",
+            "backend": [
+            {
+                  "url_pattern": "/v1/laptops",
+                  "method": "GET",
+                  "host": [
+                    "http://laptops/"
+                  ],
+                  "is_collection":true,
+                  "mapping": {
+                    "collection": "laptops"
+                  }
+
+            }]
+        },
+        {
+            "endpoint": "/v1/laptops/{id}",
+            "method": "GET",
+            "output_encoding": "no-op",
+            "backend": [
+            {
+                  "encoding": "no-op",
+                  "url_pattern": "/v1/laptops/{id}",
+                  "method": "GET",
+                  "host": [
+                    "http://laptops/"
+                  ]
+            }]
+        },
+          {
+            "endpoint": "/v1/data/",
+            "method": "GET",
+            "backend": [
+            {
+                "url_pattern": "/v1/phones",
+                "method": "GET",
+                "host": [
+                  "http://phones/"
+                ],
+                "is_collection":true,
+                "mapping": {
+                  "collection": "phones"
+                }
+            },
+            {
+                "url_pattern": "/v1/laptops",
+                "method": "GET",
+                "host": [
+                    "http://laptops/"
+                ],
+                "is_collection":true,
+                "mapping": {
+                    "collection": "laptops"
+                }
+          }]
+        }
+    ],
+    "extra_config": {}
+}
